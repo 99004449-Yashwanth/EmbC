@@ -1,0 +1,147 @@
+/*
+ * stm32f4xx.h
+ *
+ *  Created on: 18-Jun-2021
+ *      Author: HP
+ */
+
+#ifndef INC_STM32F4XX_H_
+#define INC_STM32F4XX_H_
+
+/* Base addresses of memory components */
+#define FLASH_BASEADDR 0x08000000U
+#define SRAM_BASEADDR 0x20000000U //pg72
+#define SRAM1_BASEADDR 0x20000000U //112kb
+#define SRAM2_BASEADDR 0x2001C000U //16kb
+//to do
+
+/* Base addresses of bus systems */
+#define AHB1_BASEADDR 0x40020000U
+//#define AHB2_BASEADDR 0x50000000U //pg66-67
+#define APB2_BASEADDR 0x40010000U
+#define APB1_BASEADDR 0x40007800U
+/* Base addresses of peripherals hanging on to ahb1 buses */
+#define GPIOA_BASEADDR 	(AHB1_BASEADDR + 0x0000)
+#define GPIOB_BASEADDR 	(AHB1_BASEADDR + 0x0400)
+#define GPIOC_BASEADDR 	(AHB1_BASEADDR + 0x0800)
+#define GPIOD_BASEADDR (AHB1_BASEADDR + 0x0C00)
+#define GPIOE_BASEADDR (AHB1_BASEADDR + 0x1000)
+#define GPIOF_BASEADDR (AHB1_BASEADDR + 0x1400)
+#define GPIOG_BASEADDR (AHB1_BASEADDR + 0x1800)
+#define GPIOH_BASEADDR (AHB1_BASEADDR + 0x1C00)
+#define GPIOI_BASEADDR (AHB1_BASEADDR + 0x2000)
+#define GPIOJ_BASEADDR (AHB1_BASEADDR + 0x2400)
+#define GPIOK_BASEADDR (AHB1_BASEADDR + 0x2800)
+#define CRC_BASEADDR 	(AHB1_BASEADDR + 0x3000)
+#define RCC_BASEADDR (AHB1_BASEADDR + 0x3800)
+#define FLASH_INTERFACE_REG_BASEADDR (AHB1_BASEADDR + 0x3C00)
+#define BKPSRAM_BASEADDR (AHB1_BASEADDR + 0x4000)
+#define DMA1_BASEADDR (AHB1_BASEADDR + 0x6000)
+#define DMA2_BASEADDR (AHB1_BASEADDR + 0x6400)
+#define ETHERNET MAC_BASEADDR (AHB1_BASEADDR + 0x8000)
+#define DMA2D_BASEADDR (AHB1_BASEADDR + 0xB000)
+//#define USB OTG HS_BASEADDR (AHB1_BASEADDR + 0x000) //doubt
+
+/* Base addresses of peripherals hanging on to ahb2 buses */
+//#define USB_OTG_GS_BASEADDR (AHB2_BASEADDR + 0x000)
+//#define GPIOB_BASEADDR (AHB2_BASEADDR + 0x400)
+
+/* Base addresses of peripherals hanging on to apb1 buses */
+#define I2C1_BASEADDR (APB1_BASEADDR + 0x5400)
+#define I2C2_BASEADDR (APB1_BASEADDR + 0x5800)
+#define I2C3_BASEADDR (APB1_BASEADDR + 0x5C00)
+#define SPI2_BASEADDR (APB1_BASEADDR + 0x3800)
+#define SPI3_BASEADDR (APB1_BASEADDR + 0x3C00)
+#define USART2_BASEADDR (APB1_BASEADDR + 0x4400)
+#define USART3_BASEADDR (APB1_BASEADDR + 0x4800)
+#define USART4_BASEADDR (APB1_BASEADDR + 0x4C00)
+#define USART5_BASEADDR (APB1_BASEADDR + 0x5000)
+/* Base addresses of peripherals hanging on to apb2 buses */
+#define SPI1_BASEADDR (APB2_BASEADDR + 0x3000)
+#define USART1_BASEADDR (APB1_BASEADDR + 0x1000)
+#define USART6_BASEADDR (APB1_BASEADDR + 0x1400)
+#define SYSCFG_BASEADDR (APB1_BASEADDR + 0x3800)
+#define EXTI_BASEADDR (APB1_BASEADDR + 0x1400)
+
+#define GPIOA ((GPIO_RegDef_t*)GPIOA_BASEADDR)
+#define GPIOB ((GPIO_RegDef_t*)GPIOB_BASEADDR)
+#define GPIOC ((GPIO_RegDef_t*)GPIOC_BASEADDR)
+#define GPIOD ((GPIO_RegDef_t*)GPIOD_BASEADDR)
+#define GPIOE ((GPIO_RegDef_t*)GPIOE_BASEADDR)
+#define GPIOF ((GPIO_RegDef_t*)GPIOF_BASEADDR)
+#define GPIOG ((GPIO_RegDef_t*)GPIOG_BASEADDR)
+#define GPIOH ((GPIO_RegDef_t*)GPIOH_BASEADDR)
+#define GPIOI ((GPIO_RegDef_t*)GPIOI_BASEADDR)
+#define GPIOJ ((GPIO_RegDef_t*)GPIOJ_BASEADDR)
+#define GPIOK ((GPIO_RegDef_t*)GPIOK_BASEADDR)
+
+typedef struct
+{
+	uint32_t MODER;
+	uint32_t OTYPER;
+	uint32_t OSPEEDR;
+	uint32_t PUPDR;
+	uint32_t IDR;
+	uint32_t ODR;
+	uint32_t BSRRL;
+	uint32_t BSRRH;
+	uint32_t LCKR;
+	uint32_t AFR[2];
+} GPIO_RegDef_t;
+
+GPIO_RegDef_t *pGPIOA = GPIOA;
+GPIO_RegDef_t *pGPIOB = GPIOB;
+GPIO_RegDef_t *pGPIOC = GPIOC;
+GPIO_RegDef_t *pGPIOD = GPIOD;
+GPIO_RegDef_t *pGPIOE = GPIOE;
+GPIO_RegDef_t *pGPIOF = GPIOF;
+GPIO_RegDef_t *pGPIOG = GPIOG;
+GPIO_RegDef_t *pGPIOH = GPIOH;
+GPIO_RegDef_t *pGPIOI = GPIOI;
+GPIO_RegDef_t *pGPIOJ = GPIOJ;
+GPIO_RegDef_t *pGPIOK = GPIOK;
+
+typedef struct
+{
+	uint32_t RCC_CR;
+	uint32_t RCC_PLLCFGR;
+	uint32_t RCC_CFGR;
+	uint32_t RCC_CIR;
+	uint32_t RCC_AHB1RSTR;
+	uint32_t RCC_AHB2RSTR;
+	uint32_t RCC_AHB3RSTR;
+	uint32_t RESERVE;
+	uint32_t RCC_APB1RSTR;
+	uint32_t RCC_APB2RSTR;
+	uint32_t RESERVE;
+	uint32_t RESERVE;
+	uint32_t RCC_AHB1ENR;
+	uint32_t RCC_AHB2ENR;
+	uint32_t RCC_AHB3ENR;
+	uint32_t RESERVE;
+	uint32_t RCC_APB1ENR;
+	uint32_t RCC_APB2ENR;
+	uint32_t RESERVE;
+	uint32_t RESERVE;
+	uint32_t RCC_AHB1LPENR;
+	uint32_t RCC_AHB2LPENR;
+	uint32_t RCC_AHB3LPENR;
+	uint32_t RESERVE;
+	uint32_t RCC_APB1LPENR;
+	uint32_t RCC_APB2LPENR;
+	uint32_t RESERVE;
+	uint32_t RESERVE;
+	uint32_t RCC_BDCR;
+	uint32_t RCC_CSR;
+	uint32_t RESERVE;
+	uint32_t RESERVE;
+	uint32_t RCC_SSCGR;
+	uint32_t RCC_PLLI2SCFGR;
+	uint32_t RCC_PLLSAICFGR;
+	uint32_t RCC_DCKCFGR;
+} RCC_RegDef_t;
+
+
+
+
+#endif /* INC_STM32F4XX_H_ */
